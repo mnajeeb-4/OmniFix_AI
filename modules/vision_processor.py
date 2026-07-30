@@ -6,16 +6,14 @@ Detects parts and draws bounding boxes with risk color codes.
 import cv2
 import numpy as np
 from ultralytics import YOLO
-import torch
 import tempfile
 import os
 from PIL import Image
 import io
 import streamlit as st
-from ultralytics import YOLO
 
 
-   # Cache the model loading so it only downloads ONCE on the server
+# Cache the model loading so it only downloads ONCE on the server
 @st.cache_resource
 def load_yolo_model():
     try:
@@ -23,6 +21,7 @@ def load_yolo_model():
     except Exception as e:
         print(f"YOLO model load failed: {e}")
         return None
+
 
 class VisionProcessor:
     def __init__(self):
