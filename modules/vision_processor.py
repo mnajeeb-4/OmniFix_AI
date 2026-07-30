@@ -11,21 +11,23 @@ import tempfile
 import os
 from PIL import Image
 import io
+import streamlit as st
+from ultralytics import YOLO
 
+
+   # Cache the model loading so it only downloads ONCE on the server
+@st.cache_resource
+def load_yolo_model():
+    try:
+        return YOLO('yolov8n.pt')
+    except Exception as e:
+        print(f"YOLO model load failed: {e}")
+        return None
 
 class VisionProcessor:
-    def __init__(self, model_name='yolov8n.pt'):
-        """
-        Initialize YOLO model. Downloads the model if not present.
-        Fallback to mock detector if model fails.
-        """
-        self.model = None
-        try:
-            self.model = YOLO(model_name)
-            self.model.eval()
-        except Exception as e:
-            print(f"YOLO model load failed: {e}. Using mock detector.")
-            self.model = None
+    def __init__(self):
+        # Use the cached loader instead of calling YOLO directly
+        self.model = load_yolo_model()
 
     def load_image(self, image_input):
         """
