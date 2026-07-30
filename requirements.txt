@@ -1,12 +1,12 @@
-streamlit
-opencv-python-headless
-librosa
-numpy
-pandas
-ultralytics
-torch
-torchvision
-scikit-learn
-matplotlib
-plotly
-pillow
+streamlit==1.35.0
+opencv-python-headless==4.9.0.80   # <-- CHANGED from opencv-python
+librosa==0.10.1.post1
+numpy==1.26.4
+pandas==2.2.1
+ultralytics==8.2.18
+torch==2.3.0
+torchvision==0.18.0
+scikit-learn==1.4.1.post1
+matplotlib==3.8.4
+plotly==5.22.0
+pillow==10.3.0
